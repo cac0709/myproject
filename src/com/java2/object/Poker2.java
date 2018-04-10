@@ -2,34 +2,26 @@ package com.java2.object;
 
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Poker2 {
-	Random random = new Random();
-	List<Integer> cards = new ArrayList<>();
-	String flowers = "SHDC";
-	public Poker2() {
-		for (int i = 0; i < cards.set(i,52); i++) {
-			System.out.println((i % 13) + 1 + "" + (flowers.charAt(i / 13)));
-		}
-	}
-		
+	public static void main(String[] args) {  
+        String ID[]={"3","4","5","6","7","8","9","10","J","Q","K","A","2"};  
+        String Suit[]={"S","H","D","C"};
+        ArrayList<Poker2> list=new ArrayList<Poker2>();  
+        for(int i=0;i<4;i++){  
+            for(int j=0;j<13;j++){ 
+            	list.add(i,j);
+            	  
+            }
+        }
+        	System.out.println(list); 
+              Collections.shuffle(list);  
+              System.out.println(list);  
+                
+            }  
+        }
 	
-	
-	public void shuffle(){
-		for (int i=0; i<cards.size(); i++){
-			int r =random.nextInt(52);
-		
-		}
-	}
-	
-	public void show(){
-		for (int i=0; i<cards.set(i, 52); i++){
-			int c = i;
-			System.out.print((c%13)+1 + "" + (flowers.charAt(c/13)) + " ");
-			if (i%13==0){
-				System.out.println();
-			}
-		}
-	}
-}
+
+        
