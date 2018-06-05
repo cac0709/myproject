@@ -47,7 +47,7 @@ public class Sogo {
 							Sales sales = new Sales(type, amount);
 							list.add(sales);
 						} catch (NumberFormatException e) {
-							System.out.println("¸ê®Æ®æ¦¡¿ù»~");
+							System.out.println("ï¿½ï¿½Æ®æ¦¡ï¿½ï¿½ï¿½~");
 							return;
 						}
 						line = in.readLine();
@@ -88,9 +88,9 @@ public class Sogo {
 		try {
 			FileOutputStream fos = new FileOutputStream("sales.txt", true);
 			PrintStream out = new PrintStream(fos);
-			System.out.print("½Ğ¿é¤J·|­ûµ¥¯Å:");
+			System.out.print("è«‹è¼¸å…¥æœƒå“¡ç­‰ç´š:");
 			int type = scanner.nextInt();
-			System.out.print("½Ğ¿é¤J¾P°âª÷ÃB:");
+			System.out.print("è«‹è¼¸å…¥éŠ·å”®é‡‘é¡:");
 			int amount = scanner.nextInt();
 			out.println(type + "\t" + amount);
 			out.flush();
@@ -103,10 +103,10 @@ public class Sogo {
 	}
 
 	public void showFunctions() {
-		System.out.println("½Ğ¿é¤J¥\¯à(1~3):");
-		System.out.println("1) ¿é¤J¾P°â°O¿ı");
-		System.out.println("2) ¦L¥X¾P°â³øªí");
-		System.out.println("3) µ²§ôµ{¦¡");
+		System.out.println("è«‹è¼¸å…¥åŠŸèƒ½(1~3):");
+		System.out.println("1) è¼¸å…¥éŠ·å”®è¨˜éŒ„");
+		System.out.println("2) å°å‡ºéŠ·å”®å ±è¡¨");
+		System.out.println("3) çµæŸç¨‹å¼");
 	}
 
 	public static void main(String[] args) {
