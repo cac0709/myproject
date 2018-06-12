@@ -1,12 +1,15 @@
 package com.java2.oo;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
-
 /*
  * 有一遊戲場地，長寬由執行時決定，場地中亂數產生陷阱 陷阱數也由當時才決定
  * 
@@ -14,12 +17,12 @@ import java.util.TreeSet;
  * 
  * 有個檔案(maze.txt)資訊如下： 6,4,5,6,8,2,4,2,2,6,6,8,4,2,2,6
  */
-//長寬6*4
+//
 ///loading map
 public class MazeMain {
 	public MazeMain() {
 		try {
-			///loading map
+			//MAP SIZE
 			FileReader fr = new FileReader("maze.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String line = br.readLine();
@@ -27,7 +30,7 @@ public class MazeMain {
 			int col = Integer.parseInt(tokens[0]);
 			int row = Integer.parseInt(tokens[1]);
 
-			// loadingtraps
+			// TRAPS
 			line = br.readLine();
 			int trapCount = Integer.parseInt(line);
 			Maze m = new Maze(row, col, trapCount);
@@ -36,9 +39,18 @@ public class MazeMain {
 			while (set.size() < 5) {
 				String trap = String.valueOf(r.nextInt(24));
 				set.add(trap);
-				
 			}
-			// reduce hp
+        //讀出SET物件
+			Iterator it = set.iterator();
+			m.trapLocation = new int[set.size()];
+		//印出陷阱位置	
+		for (int a = 0; a < set.size(); a++) {
+				int i = Integer.parseInt(String.valueOf(it.next()));
+				m.trapLocation[a] = i;
+				System.out.println(m.trapLocation[a]);
+			}
+
+			// 設定SWITCH CASE
 			int judgment;
 			line = br.readLine();
 			String steps[] = line.split(",");
@@ -47,11 +59,11 @@ public class MazeMain {
 				if (m.player.HP > 0) {
 					judgment = 0;
 					System.out.println("請輸入上(8)下(2)左(4)右(6)：");
+					System.out.println(steps[i]);
 					switch (steps[i]) {
-					//上
 					case "8":
 						if (m.player.location / 6 == 0) {
-							System.out.println("邊界");
+							System.out.println("邊界!");
 							m.player.HP -= 5;
 						} else {
 							m.player.location -= 6;
@@ -68,16 +80,15 @@ public class MazeMain {
 						}
 						if (m.player.HP > 0) {
 							System.out.println("目前位置：" + m.player.location);
-							System.out.println("剩餘血量：" + m.player.HP);
+							System.out.println("目前血量：" + m.player.HP);
 							break;
 						} else {
 							System.out.println("YOU DEAD!");
 							break;
 						}
-						//左
 					case "4":
 						if (m.player.location % 6 == 0) {
-							System.out.println("邊界");
+							System.out.println("邊界!");
 							m.player.HP -= 5;
 						} else {
 							m.player.location -= 1;
@@ -94,16 +105,15 @@ public class MazeMain {
 						}
 						if (m.player.HP > 0) {
 							System.out.println("目前位置：" + m.player.location);
-							System.out.println("剩餘血量：" + m.player.HP);
+							System.out.println("目前血量：" + m.player.HP);
 							break;
 						} else {
 							System.out.println("YOU DEAD!");
 							break;
 						}
-						//下
 					case "2":
 						if (m.player.location / 6 == 3) {
-							System.out.println("邊界");
+							System.out.println("邊界!");
 							m.player.HP -= 5;
 						} else {
 							m.player.location += 6;
@@ -120,16 +130,16 @@ public class MazeMain {
 						}
 						if (m.player.HP > 0) {
 							System.out.println("目前位置：" + m.player.location);
-							System.out.println("剩餘血量：" + m.player.HP);
+							System.out.println("目前血量：" + m.player.HP);
 							break;
 						} else {
 							System.out.println("YOU DEAD!");
 							break;
 						}
-						//右
+					
 					case "6":
 						if (m.player.location % 6 == 5) {
-							System.out.println("邊界");
+							System.out.println("邊界!");
 							m.player.HP -= 5;
 						} else {
 							m.player.location += 1;
@@ -146,21 +156,94 @@ public class MazeMain {
 						}
 						if (m.player.HP > 0) {
 							System.out.println("目前位置：" + m.player.location);
-							System.out.println("剩餘血量：" + m.player.HP);
+							System.out.println("目前血量：" + m.player.HP);
 							break;
 						} else {
 							System.out.println("YOU DEAD!");
 							break;
 						}
+					
+					
 					default:
 						break;
-						
-						
+					}
+				}
 			}
-
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	
-			}
+
+	}
+
+	public static void main(String[] args) {
+		new MazeMain();
+	}
+
+	public class Maze {
+		int row;
+		int col;
+		int trapCount;
+		int[] trapLocation;
+		Player player = new Player();
+
+		public Maze(int row, int col, int trapCount) {
+			this.row = row;
+			this.col = col;
+			this.trapCount = trapCount;
+		}
+
+		public void setRow(int row) {
+			this.row = row;
+		}
+
+		public int getRow() {
+			return row;
+		}
+
+		public int getCol() {
+			return col;
+		}
+
+		public void setCol(int col) {
+			this.col = col;
+		}
+
+		public int getTrapCount() {
+			return trapCount;
+		}
+
+		public void setTrapCount(int trapCount) {
+			this.trapCount = trapCount;
+		}
+
+		public int[] getTrapLocation() {
+			return trapLocation;
+		}
+
+		public void setTrapLocation(int[] trapLocation) {
+			this.trapLocation = trapLocation;
+		}
+
+		public Player getPlayer() {
+			return player;
+		}
+
+		public void setPlayer(Player player) {
+			this.player = player;
+		}
+
+	}
+
+	public class Player {
+		int HP = 100;
+		int location = 0;
+	}
+
+}
+
+
 	
 	
 
