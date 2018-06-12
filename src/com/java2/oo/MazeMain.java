@@ -14,6 +14,7 @@ import java.util.TreeSet;
  * 
  * 有個檔案(maze.txt)資訊如下： 6,4,5,6,8,2,4,2,2,6,6,8,4,2,2,6
  */
+//長寬6*4
 ///loading map
 public class MazeMain {
 	public MazeMain() {
@@ -50,7 +51,7 @@ public class MazeMain {
 					//上
 					case "8":
 						if (m.player.location / 6 == 0) {
-							System.out.println("邊界!");
+							System.out.println("邊界");
 							m.player.HP -= 5;
 						} else {
 							m.player.location -= 6;
@@ -76,7 +77,7 @@ public class MazeMain {
 						//左
 					case "4":
 						if (m.player.location % 6 == 0) {
-							System.out.println("撞牆!");
+							System.out.println("邊界");
 							m.player.HP -= 5;
 						} else {
 							m.player.location -= 1;
@@ -99,6 +100,61 @@ public class MazeMain {
 							System.out.println("YOU DEAD!");
 							break;
 						}
+						//下
+					case "2":
+						if (m.player.location / 6 == 3) {
+							System.out.println("邊界");
+							m.player.HP -= 5;
+						} else {
+							m.player.location += 6;
+							for (int a = 0; a < set.size(); a++) {
+								if (m.trapLocation[a] == m.player.location) {
+									judgment = 1;
+								}
+							}
+							if (judgment == 1) {
+								m.player.HP -= 20;
+							} else {
+								m.player.HP -= 1;
+							}
+						}
+						if (m.player.HP > 0) {
+							System.out.println("目前位置：" + m.player.location);
+							System.out.println("剩餘血量：" + m.player.HP);
+							break;
+						} else {
+							System.out.println("YOU DEAD!");
+							break;
+						}
+						//右
+					case "6":
+						if (m.player.location % 6 == 5) {
+							System.out.println("邊界");
+							m.player.HP -= 5;
+						} else {
+							m.player.location += 1;
+							for (int a = 0; a < set.size(); a++) {
+								if (m.trapLocation[a] == m.player.location) {
+									judgment = 1;
+								}
+							}
+							if (judgment == 1) {
+								m.player.HP -= 20;
+							} else {
+								m.player.HP -= 1;
+							}
+						}
+						if (m.player.HP > 0) {
+							System.out.println("目前位置：" + m.player.location);
+							System.out.println("剩餘血量：" + m.player.HP);
+							break;
+						} else {
+							System.out.println("YOU DEAD!");
+							break;
+						}
+					default:
+						break;
+						
 						
 			}
 
