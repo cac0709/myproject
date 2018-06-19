@@ -6,13 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 public class Myserver {
+
 	public static void main(String[] args) {
 		try {
 			ServerSocket server = new ServerSocket(9958);
@@ -33,6 +29,5 @@ public class Myserver {
 		}
 		
 	}
-
 
 }

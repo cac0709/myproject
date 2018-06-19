@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.io.InputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 
-public class Tester extends JFrame{
+public class Tester extends JFrame {
 	public Tester() {
 		setSize(200, 300);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -40,6 +37,5 @@ public class Tester extends JFrame{
 		}
 
 	}
-
 
 }
