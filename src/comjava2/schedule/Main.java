@@ -10,15 +10,38 @@ package comjava2.schedule;
  * 【有課: C004 English 到 16時 】
  */
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+	List<Course> courses = new ArrayList<>();
 	public Main(){
-		try{
-			FileReader fr = new FileReader("schedule.txt");
-			BufferedReader br = new BufferedReader(fr);
+		readCourse();
+		
+	}
+	public void readCourse(){
+		BufferedReader in = new BufferedReader(new FileReader("schedule.txt"));
+		String line;
+		try {
+			line = in.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(line!=null){
+			
+		}
+	}
+	public static void main(String[] args) {
+		new Main();
+	}
+}
+
+		
 
 
 	
